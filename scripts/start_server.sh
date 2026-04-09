@@ -1,11 +1,14 @@
 #!/bin/bash
+set -e
 
-cd /var/www/app
+APP_DIR=/home/ubuntu/app
+
+cd $APP_DIR
 
 # stop old process
-pkill dotnet || true
+pkill -f dotnet || true
 
 # start application
 export ASPNETCORE_URLS=http://0.0.0.0:80
 
-nohup dotnet dotnet-bluegreen-demo.dll > app.log 2>&1 &
+nohup dotnet out/dotnet-bluegreen-demo.dll > app.log 2>&1 &
