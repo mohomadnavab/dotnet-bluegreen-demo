@@ -23,18 +23,24 @@ user_data = base64encode(<<EOF
 #!/bin/bash
 set -e
 
-apt-get update -y
-apt-get install -y ruby wget apt-transport-https
+sudo apt-get update -y
+sudo apt-get install -y ruby wget apt-transport-https curl unzip
 
 # Install CodeDeploy Agent
 
 cd /tmp
 wget https://aws-codedeploy-ap-south-1.s3.ap-south-1.amazonaws.com/latest/install
-chmod +x install
+sudo chmod +x install
 ./install auto
 
-systemctl enable codedeploy-agent
-systemctl start codedeploy-agent
+sudo systemctl restart codedeploy-agent
+sudo systemctl enable codedeploy-agent
+sudo systemctl start codedeploy-agent
+
+# Create application directory
+
+sudo mkdir -p /home/ubuntu/app
+sudo chown _R ubuntu:ubuntu /home/ubuntu/app
 
 # Install Microsoft repo
 
@@ -42,12 +48,12 @@ wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.
 dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
-apt-get update -y
+sudo apt-get update -y
 
 # Install ASP.NET runtime
 
-apt-get install -y aspnetcore-runtime-6.0
-apt-get install -y dotnet-runtime-6.0
+sudo apt-get install -y aspnetcore-runtime-7.0
+sudo apt-get install -y dotnet-runtime-7.0
 
 # Verify installation
 
