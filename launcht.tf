@@ -52,8 +52,8 @@ sudo apt-get update -y
 
 # Install ASP.NET runtime
 
-sudo apt-get install -y aspnetcore-runtime-7.0
-sudo apt-get install -y dotnet-runtime-7.0
+sudo apt-get install -y aspnetcore-runtime-6.0
+sudo apt-get install -y dotnet-runtime-6.0
 
 # Verify installation
 
