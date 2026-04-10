@@ -8,4 +8,4 @@ pkill -f dotnet || true
 
 nohup dotnet dotnet-bluegreen-demo.dll > app.log 2>&1 &
 
-sleep 5
+sleep 10

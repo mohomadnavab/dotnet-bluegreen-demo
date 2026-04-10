@@ -22,6 +22,53 @@ resource "aws_lb" "dotnet_alb" {
   }
 }
 
+
+# Target Group
+
+resource "aws_lb_target_group" "blue" {
+  name = "blue-tg-demo"
+  port = 5000
+  protocol = "HTTP"
+  vpc_id = aws_vpc.main.id
+
+  health_check {
+    protocol = "HTTP"
+    port = "5000"
+    path = "/"
+    matcher = "200"
+    interval = 30
+    timeout = 5
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+  }
+
+  tags = {
+    name = "blue-target-group"
+  }
+  
+}
+
+
+# target group - Green
+
+resource "aws_lb_target_group" "green" {
+  name = "green-tg-demo"
+  port = "5000"
+  protocol = "HTTP"
+  vpc_id = aws_vpc.main.id
+
+  health_check {
+    protocol = "HTTP"
+    port = "5000"
+    path = "/"
+    matcher = "200"
+    interval = 30
+    timeout = 5
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+  }
+  
+}
 ###################################
 # ALB LISTENER
 ###################################

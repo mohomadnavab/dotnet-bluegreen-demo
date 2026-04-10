@@ -5,7 +5,7 @@ set -e
 echo "validating"
 
 for i in {1..10}; do
-  if curl -fs http://localhost:80; then
+  if curl -fs http://localhost:5000; then
     echo "Application is healthy"
     exit 0
     fi
