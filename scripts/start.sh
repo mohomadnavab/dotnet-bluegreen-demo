@@ -12,3 +12,5 @@ pkill -f dotnet || true
 export ASPNETCORE_URLS=http://0.0.0.0:80
 
 nohup dotnet out/dotnet-bluegreen-demo.dll > app.log 2>&1 &
+
+sleep 5
